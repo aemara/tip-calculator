@@ -35,6 +35,7 @@ tipButtons.forEach(button => {
         })
 
         tipAmount = parseTipAmount(button);
+        resetButton.classList.add('reset-btn-active');
         calculateResults(billAmount,tipAmount,numberOfPeople);
     })
 })
@@ -46,7 +47,7 @@ customTipInput.onclick = () => {
 }
 customTipInput.addEventListener('input', () => {
     tipAmount = customTipInput.value;
-    console.log(tipAmount);
+    resetButton.classList.add('reset-btn-active');
     calculateResults(billAmount,tipAmount,numberOfPeople);
 })
 
@@ -54,13 +55,16 @@ customTipInput.addEventListener('input', () => {
 // Updating number of people
 numberOfPeopleInput.addEventListener('input', (event) => {
     numberOfPeople = Number(event.target.value);
+    resetButton.classList.add('reset-btn-active');
     calculateResults(billAmount,tipAmount,numberOfPeople);
 })
 
 // Reseting
 resetButton.addEventListener('click', () => {
     reset();
+    resetButton.classList.remove('reset-btn-active');
 })
+
 
 
 const parseTipAmount = (tipBtn) => {
