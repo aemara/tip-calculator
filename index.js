@@ -73,19 +73,20 @@ const parseTipAmount = (tipBtn) => {
 }
 
 const calculateResults = (billAmount, tipAmount, numberOfPeople) => {
-    const billPerPerson = billAmount / numberOfPeople;
-    const tipPerPerson = customTipInput.value ? customTipInput.value / numberOfPeople : (tipAmount/100) * billAmount / numberOfPeople;
-    const totalPerPerson = tipPerPerson + billPerPerson;
-
-    renderResults(parseResults(tipPerPerson.toString()), parseResults(totalPerPerson.toString()));
+    if(billAmount && tipAmount && numberOfPeople) {
+        const billPerPerson = billAmount / numberOfPeople;
+        const tipPerPerson = customTipInput.value ? (Number(customTipInput.value) / numberOfPeople) : (tipAmount/100) * billAmount / numberOfPeople;
+        const totalPerPerson = tipPerPerson + billPerPerson;
+        renderResults(parseResults(tipPerPerson.toString()), parseResults(totalPerPerson.toString()));
+    }
+    
+    
     
 }
 
-const renderResults = (tip,total) => {
-    if(tip && total) { 
+const renderResults = (tip,total) => { 
         tipValueOutput.innerHTML = `$${tip}`;
         totalValueOutput.innerHTML = `$${total}`;
-    }
 }
 
 const reset = () => {
@@ -108,10 +109,9 @@ const reset = () => {
 }
 
 const parseResults = (result) => {
-
         const resultSubstrings = result.split('.');
         const leftDecimal = resultSubstrings[0];
         const rightDecimal = resultSubstrings[1] ? resultSubstrings[1].slice(0,2) : '00';
-        return `${leftDecimal}.${rightDecimal}`
+        return `${leftDecimal}.${rightDecimal}`;      
 
 }
