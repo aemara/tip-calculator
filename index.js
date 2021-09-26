@@ -5,6 +5,8 @@ const numberOfPeopleInput = document.querySelector('input#number-of-people');
 const tipValueOutput = document.querySelector('.tip-value');
 const totalValueOutput = document.querySelector('.total-value');
 const resetButton = document.querySelector('.reset-btn');
+const errorStatePeople = document.querySelector('.error-people');
+const errorStateBill = document.querySelector('.error-bill');
 let billAmount;
 let tipAmount;
 let numberOfPeople;
@@ -15,8 +17,23 @@ let total;
 //Updating bill amount
 billAmountInput.addEventListener('input', (event) => {
     billAmount = event.target.value;
+    // Error State
+    if(event.target.value === '0') {
+        errorStateBill.style.visibility = 'visible';
+        document.querySelector('.bill .input-form').classList.add('error-input-form')
+    } else {
+        errorStateBill.style.visibility = 'hidden';
+        document.querySelector('.bill .input-form').classList.remove('error-input-form');
+    }
+    resetButton.classList.add('reset-btn-active');
     calculateResults(billAmount,tipAmount,numberOfPeople);
 })
+billAmountInput.onfocus = () => {
+    document.querySelector('.bill .input-form').classList.add('active-input-form');
+}
+billAmountInput.onblur = () => {
+    document.querySelector('.bill .input-form').classList.remove('active-input-form');
+}
 
 // Updating tip amount
 tipButtons.forEach(button => {
@@ -55,14 +72,31 @@ customTipInput.addEventListener('input', () => {
 // Updating number of people
 numberOfPeopleInput.addEventListener('input', (event) => {
     numberOfPeople = Number(event.target.value);
+    console.log(`Number of People is ${numberOfPeople}`);
     resetButton.classList.add('reset-btn-active');
+
+    // Error State
+    if(event.target.value === '0') {
+        errorStatePeople.style.visibility = 'visible';
+        document.querySelector('.number-people .input-form').classList.add('error-input-form')
+        
+    } else {
+        errorStatePeople.style.visibility = 'hidden';
+        document.querySelector('.number-people .input-form').classList.remove('error-input-form');
+    }
+
     calculateResults(billAmount,tipAmount,numberOfPeople);
 })
+numberOfPeopleInput.onfocus = () => {
+    document.querySelector('.number-people .input-form').classList.add('active-input-form');
+}
+numberOfPeopleInput.onblur = () => {
+    document.querySelector('.number-people .input-form').classList.remove('active-input-form');
+}
 
 // Reseting
 resetButton.addEventListener('click', () => {
     reset();
-    resetButton.classList.remove('reset-btn-active');
 })
 
 
@@ -110,6 +144,8 @@ const reset = () => {
     tipAmount = 0;
     numberOfPeople = 0;
     
+    resetButton.classList.remove('reset-btn-active');
+    errorStatePeople.style.visibility = 'hidden';
 }
 
 const parseResults = (result) => {

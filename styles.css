@@ -21,6 +21,7 @@ body {
     background: #FFFFFF;
     border-radius: 25px 25px 0 0;
     padding: 32px;
+    max-width: 400px;
 }
 
 .input-side {
@@ -65,6 +66,14 @@ input[type=number] {
     border-radius: 5px;
 }
 
+.active-input-form {
+    border: 1px solid #26C2AE;
+}
+
+.error-input-form {
+    border: 2px solid #E17052;
+}
+
 .bill input,
 .number-people input {
     background: #F3F9FA;
@@ -76,9 +85,18 @@ input[type=number] {
     width: 90%;
 }
 
-.number-people label span {
+.bill label,
+.number-people label {
+    display: flex;
+    justify-content: space-between;
+}
+
+.error-bill,
+.error-people {
     color: #E17457;
     visibility: hidden;
+    font-size: 13px;
+    align-self: last baseline;
 }
 
 .select-tip {
@@ -140,10 +158,12 @@ input[type=number] {
     font-family: 'Space Mono', monospace;
     text-align: center;
     color: #547878;
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .input-form:focus {
-    border: 1px solid #26C2AE;
+    outline: 1px solid #26C2AE;
     color: #00474B;
 
 }
@@ -153,7 +173,7 @@ input[type=number] {
 }
 
 .custom-tip-input:focus {
-    border: 1px solid #26C2AE;
+    outline: 1px solid #26C2AE;
     color: #00474B;
 
 }
@@ -204,6 +224,7 @@ input[type=number] {
     background: #0D686D;
     color: #00474B;
     border: none;
+    border-radius: 5px;
     font-size: 20px;
     font-weight: 700;
     text-transform: uppercase;
@@ -217,6 +238,54 @@ input[type=number] {
     cursor: pointer;
 }
 
+.reset-btn:active {
+    background: #0D686D;
+}
+
 .reset-btn-active {
     background: #26C2AE;
+}
+
+
+@media screen and (min-width: 1200px) {
+    .calculator {
+        min-width: 60%;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 25px;
+
+    }
+
+    .input-side {
+        width: 45%;
+    }
+
+    .select-tip button {
+        width: 30%;
+    }
+
+    .select-tip .twenty-five {
+        margin-bottom: 22px;
+    }
+
+    .custom-tip-input {
+        width: 30%;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        height: min-content;
+    }
+
+
+    .output-side {
+        width: 40%;
+        margin-top: 0;
+        justify-content: space-between;
+        padding: 40px;
+    }
+
+    .reset-btn {
+        margin-top: 100px;
+    }
+
+
 }
