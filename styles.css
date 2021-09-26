@@ -173,7 +173,7 @@ input[type=number] {
 }
 
 .custom-tip-input:focus {
-    outline: 1px solid #26C2AE;
+    box-shadow: 0 0 0 1px #26C2AE;
     color: #00474B;
 
 }
