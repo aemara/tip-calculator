@@ -146,6 +146,8 @@ const reset = () => {
     
     resetButton.classList.remove('reset-btn-active');
     errorStatePeople.style.visibility = 'hidden';
+    errorStateBill.style.visibility = 'hidden';
+
     document.querySelector('.number-people .input-form').classList.remove('error-input-form');
     document.querySelector('.bill .input-form').classList.remove('error-input-form');
 }
